@@ -83,7 +83,6 @@ var getCols = function getCols() {
 };
 
 /*const defaults = {
- rotateEffect: false,
  defaultValue: [today.getFullYear(), formatNumber(today.getMonth() + 1), formatNumber(today.getDate()), today.getHours(), formatNumber(today.getMinutes())],
  formatValue: (p, values, displayValues) => displayValues[0] + '-' + values[1] + '-' + values[2] + ' ' + values[3] + ':' + values[4],
  onChange: function (picker, values, displayValues) {
@@ -144,8 +143,6 @@ var DatetimePicker = function (_Component) {
         _this.maxDate = new Date(props.maxDate + 'T15:59:59');
 
         _this.options = {
-            rotateEffect: false,
-
             defaultValue: _this.getDefaultValue.bind(_this)(),
 
             formatValue: _this.getFmtValue.bind(_this),
@@ -161,6 +158,9 @@ var DatetimePicker = function (_Component) {
         key: 'getDefaultValue',
         value: function getDefaultValue() {
             var _result = [];
+            // 可以没有默认值
+            if (!this.props.defaultValue) return '';
+
             var initDate = new Date(this.props.defaultValue);
             if (+initDate > +this.maxDate) initDate = this.maxDate;
             if (+initDate < +this.minDate) initDate = this.minDate;
