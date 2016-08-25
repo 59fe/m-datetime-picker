@@ -4,6 +4,12 @@
 
 日期时间选择器,基于m-picker扩展来
 
+## 安装
+
+```
+npm i m-datetime-picker --save
+```
+
 ## 何时使用
 
 需要选择日期时间时，代替系统原生的datetime input
