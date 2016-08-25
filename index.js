@@ -158,32 +158,36 @@ var DatetimePicker = function (_Component) {
         key: 'getDefaultValue',
         value: function getDefaultValue() {
             var _result = [];
+            var dfv = this.props.defaultValue;
             // 可以没有默认值
-            if (!this.props.defaultValue) return '';
-
-            var initDate = new Date(this.props.defaultValue);
-            if (+initDate > +this.maxDate) initDate = this.maxDate;
-            if (+initDate < +this.minDate) initDate = this.minDate;
-            this.fmtAry.forEach(function (x) {
-                if (x === 'Y') {
-                    _result.push(initDate.getFullYear());
-                } else if (x === 'M') {
-                    _result.push(formatNumber(initDate.getMonth() + 1));
-                } else if (x === 'd') {
-                    _result.push(formatNumber(initDate.getDate()));
-                } else if (x === 'H') {
-                    _result.push(formatNumber(initDate.getHours()));
-                } else if (x === 'm') {
-                    _result.push(formatNumber(initDate.getMinutes()));
-                } else if (x === 's') {
-                    _result.push(formatNumber(initDate.getSeconds()));
-                }
-            });
+            if (dfv) {
+                var initDate = new Date(dfv);
+                if (+initDate > +this.maxDate) initDate = this.maxDate;
+                if (+initDate < +this.minDate) initDate = this.minDate;
+                this.fmtAry.forEach(function (x) {
+                    if (x === 'Y') {
+                        _result.push(initDate.getFullYear());
+                    } else if (x === 'M') {
+                        _result.push(formatNumber(initDate.getMonth() + 1));
+                    } else if (x === 'd') {
+                        _result.push(formatNumber(initDate.getDate()));
+                    } else if (x === 'H') {
+                        _result.push(formatNumber(initDate.getHours()));
+                    } else if (x === 'm') {
+                        _result.push(formatNumber(initDate.getMinutes()));
+                    } else if (x === 's') {
+                        _result.push(formatNumber(initDate.getSeconds()));
+                    }
+                });
+            }
             return _result;
         }
     }, {
         key: 'getFmtValue',
         value: function getFmtValue(picker, values, displayValues) {
+            // 如果是空数组，表示此时日期选择器默认值是空，不需要补全“年月日”的汉字
+            if (!displayValues.length) return ''
+
             var _result = [];
             var index = 0;
             this.fmtAry.forEach(function (x) {
@@ -227,7 +231,7 @@ DatetimePicker.propTypes = {
     onOpen: _react.PropTypes.func,
     onClose: _react.PropTypes.func,
     onChange: _react.PropTypes.func,
-    defaultValue: _react.PropTypes.number, // 默认的时间，timestamp，默认为现在
+    defaultValue: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),// 默认的时间，timestamp，默认为现在
     dateFormat: _react.PropTypes.string, // Y: 年, M: 月, d: 日期, H: 时, m: 分, s: 秒，如果格式不规范，可能会导致一些奇怪的结果
     minDate: _react.PropTypes.string, // 起始日期, xxxx-xx-xx格式
     maxDate: _react.PropTypes.string, // 最大日期，格式同上
