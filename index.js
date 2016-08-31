@@ -139,8 +139,11 @@ var DatetimePicker = function (_Component) {
         _this.hoursIndex = _this.fmtAry.indexOf('H');
         _this.minutesIndex = _this.fmtAry.indexOf('m');
         _this.secondsIndex = _this.fmtAry.indexOf('s');
-        _this.minDate = new Date(props.minDate + 'T16:00:00');
-        _this.maxDate = new Date(props.maxDate + 'T15:59:59');
+        var minDateArr = props.minDate.split('-');
+        _this.minDate = new Date(+minDateArr[0], minDateArr[1] - 1, +minDateArr[2]);
+        var maxDateArr = props.maxDate.split('-');
+        _this.maxDate = new Date(+maxDateArr[0], maxDateArr[1] - 1, +maxDateArr[2]);
+
 
         _this.options = {
             defaultValue: _this.getDefaultValue.bind(_this)(),
