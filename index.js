@@ -40,7 +40,7 @@ var getNumberAry = function getNumberAry(max) {
 
     var arr = [];
     for (var i = min; i <= max; i++) {
-        arr.push(i < 10 ? '0' + i : i);
+        arr.push(i < 10 ? '0' + i : '' + i);
     }
     return arr;
 };
@@ -139,6 +139,7 @@ var DatetimePicker = function (_Component) {
         _this.hoursIndex = _this.fmtAry.indexOf('H');
         _this.minutesIndex = _this.fmtAry.indexOf('m');
         _this.secondsIndex = _this.fmtAry.indexOf('s');
+
         var minDateArr = props.minDate.split('-');
         _this.minDate = new Date(+minDateArr[0], minDateArr[1] - 1, +minDateArr[2]);
         var maxDateArr = props.maxDate.split('-');
@@ -218,6 +219,24 @@ var DatetimePicker = function (_Component) {
             if (currentValue > _days.length) {
                 currentValue = _days.length;
             }
+
+            // check minDate , maxDate
+            var minDateArr = picker.props.minDate.split('-');
+            var minDate = new Date(+minDateArr[0], minDateArr[1] - 1, +minDateArr[2]);
+            var maxDateArr = picker.props.maxDate.split('-');
+            var maxDate = new Date(+maxDateArr[0], maxDateArr[1] - 1, +maxDateArr[2]);
+
+            var valuesDate = new Date(+values[0], values[1] - 1, +values[2])
+            if (+valuesDate < +minDate) {
+                month = minDateArr[1]
+                currentValue = minDateArr[2];
+                cols[this.monthIndex].setValue(month);
+            } else if (+valuesDate > +maxDate) {
+                month = maxDateArr[1]
+                currentValue = maxDateArr[2];
+                cols[this.monthIndex].setValue(month);
+            }
+
             cols[this.dateIndex].setValue(currentValue);
         }
     }, {
