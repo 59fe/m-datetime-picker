@@ -237,7 +237,8 @@ var DatetimePicker = function (_Component) {
                 cols[this.monthIndex].setValue(month);
             }
 
-            cols[this.dateIndex].setValue(currentValue);
+            // + '' 转成字符串型，因为col.values 里的1到31都是字符串型,才能匹配上
+            cols[this.dateIndex].setValue(currentValue + '');
         }
     }, {
         key: 'render',
