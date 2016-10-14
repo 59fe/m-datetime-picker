@@ -52,7 +52,7 @@ var getDaysByMonthAndYear = function getDaysByMonthAndYear(month, year) {
 };
 
 var formatNumber = function formatNumber(n) {
-    return n < 10 ? '0' + n : n;
+    return (n < 10 ? '0' : '') + n ;
 };
 
 var _colLength = {
@@ -170,7 +170,7 @@ var DatetimePicker = function (_Component) {
                 if (+initDate < +this.minDate) initDate = this.minDate;
                 this.fmtAry.forEach(function (x) {
                     if (x === 'Y') {
-                        _result.push(initDate.getFullYear());
+                        _result.push(initDate.getFullYear() + '');
                     } else if (x === 'M') {
                         _result.push(formatNumber(initDate.getMonth() + 1));
                     } else if (x === 'd') {
