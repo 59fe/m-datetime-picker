@@ -13,6 +13,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _PropTypes = require('prop-types');
+
+var _PropTypes2 = _interopRequireDefault(_PropTypes);
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -251,18 +255,18 @@ var DatetimePicker = function (_Component) {
 }(_react.Component);
 
 DatetimePicker.propTypes = {
-    onOpen: _react.PropTypes.func,
-    onClose: _react.PropTypes.func,
-    onChange: _react.PropTypes.func,
-    defaultValue: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),// 默认的时间，timestamp，默认为现在
-    dateFormat: _react.PropTypes.string, // Y: 年, M: 月, d: 日期, H: 时, m: 分, s: 秒，如果格式不规范，可能会导致一些奇怪的结果
-    minDate: _react.PropTypes.string, // 起始日期, xxxx-xx-xx格式
-    maxDate: _react.PropTypes.string, // 最大日期，格式同上
+    onOpen:         _PropTypes2.default.func,
+    onClose:        _PropTypes2.default.func,
+    onChange:       _PropTypes2.default.func,
+    defaultValue:   _PropTypes2.default.oneOfType([_PropTypes2.default.number, _PropTypes2.default.string]),// 默认的时间，timestamp，默认为现在
+    dateFormat:     _PropTypes2.default.string, // Y: 年, M: 月, d: 日期, H: 时, m: 分, s: 秒，如果格式不规范，可能会导致一些奇怪的结果
+    minDate:        _PropTypes2.default.string, // 起始日期, xxxx-xx-xx格式
+    maxDate:        _PropTypes2.default.string, // 最大日期，格式同上
 
-    toolbar: _react.PropTypes.bool,
-    toolbarTitle: _react.PropTypes.node,
-    showSubmitBtn: _react.PropTypes.bool,
-    showClearBtn: _react.PropTypes.bool
+    toolbar:        _PropTypes2.default.bool,
+    toolbarTitle:   _PropTypes2.default.node,
+    showSubmitBtn:  _PropTypes2.default.bool,
+    showClearBtn:   _PropTypes2.default.bool
 };
 
 DatetimePicker.defaultProps = {
